@@ -1,8 +1,7 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <p>{{ user }}</p>
-    <h3>{{ age }}</h3>
+    <h2>{{ user.name }}</h2>
+    <h3>{{ user.age }}</h3>
   </section>
 </template>
 
