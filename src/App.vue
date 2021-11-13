@@ -6,14 +6,15 @@
 </template>
 
 <script>
-import { ref, reactive, isRef, isReactive } from 'vue';
+// import { ref, reactive, isRef, isReactive } from 'vue';
+import { reactive, toRefs } from 'vue';
 
 export default {
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
     // const uName = ref('Maximilian');
-    const uAge = ref(31);
+    // const uAge = ref(31);
 
     // reactive is like ref, but it's made for only for objects
 
@@ -22,24 +23,28 @@ export default {
       age: 31
     });
 
-    console.log(uAge, user);
+    // console.log(uAge, user);
 
-    console.log(uAge.value); // just a snapshot, no value watcher
-    console.log(user.name, user.age); // just a snapshot, no value watcher
+    // console.log(uAge.value); // just a snapshot, no value watcher
+    // console.log(user.name, user.age); // just a snapshot, no value watcher
 
-    console.log(isRef(uAge.value)); // check if ref
-    console.log(isReactive(user.name), user.age); // check if reactive
+    // console.log(isRef(uAge.value)); // check if ref
+    // console.log(isReactive(user.name), user.age); // check if reactive
 
-    console.log(isRef(uAge)); // check if ref
-    console.log(isReactive(user)); // check if reactive
+    // console.log(isRef(uAge)); // check if ref
+    // console.log(isReactive(user)); // check if reactive
 
     setTimeout(function () {
       user.name = 'Max';
       user.age = 32;
     }, 2000);
 
+    const userRefs = toRefs(user); // get back an object whose properties are refs
+
     return {
-      user: user
+      user: user,
+      userName: userRefs.name,
+      age: userRefs.age
     };
   }
   // data() {
