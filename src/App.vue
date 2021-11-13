@@ -12,17 +12,24 @@ export default {
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
-    const uName = ref('Maximilian');
-    const uAge = ref(31);
+    // const uName = ref('Maximilian');
+    // const uAge = ref(31);
+
+    const user = ref({
+      name: 'Maximilian',
+      age: 31
+    });
+
+    console.log(user);
 
     setTimeout(function () {
-      uName.value = 'Max';
-      uAge.value = 32;
+      user.value.name = 'Max';
+      user.value.age = 32;
     }, 2000);
 
     return {
-      userName: uName,
-      age: uAge
+      userName: user.value.name,
+      age: user.value.age
     };
   }
   // data() {
