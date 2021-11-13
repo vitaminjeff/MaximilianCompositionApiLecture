@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
   </section>
 </template>
 
@@ -12,13 +13,16 @@ export default {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
     const uName = ref('Maximilian');
+    const uAge = ref(31);
 
     setTimeout(function () {
       uName.value = 'Max';
+      uAge.value = 32;
     }, 2000);
 
     return {
-      userName: uName
+      userName: uName,
+      age: uAge
     };
   }
   // data() {
