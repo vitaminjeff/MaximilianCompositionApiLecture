@@ -11,10 +11,10 @@ export default {
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
-    let uName = ref('Maximilian');
+    const uName = ref('Maximilian');
 
     setTimeout(function () {
-      uName = 'Max';
+      uName.value = 'Max';
     }, 2000);
 
     return {
