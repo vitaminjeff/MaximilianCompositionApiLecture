@@ -6,8 +6,7 @@
 </template>
 
 <script>
-// import { ref, reactive, isRef, isReactive } from 'vue';
-import { reactive, toRefs } from 'vue';
+import { /*ref, */ reactive, /* isRef, isReactive, toRefs */ } from 'vue';
 
 export default {
   setup() {
@@ -39,12 +38,12 @@ export default {
       user.age = 32;
     }, 2000);
 
-    const userRefs = toRefs(user); // get back an object whose properties are refs
+    // const userRefs = toRefs(user); // get back an object whose properties are refs
 
     return {
       user: user,
-      userName: userRefs.name,
-      age: userRefs.age
+      // userName: userRefs.name,
+      // age: userRefs.age
     };
   }
   // data() {
