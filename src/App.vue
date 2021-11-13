@@ -1,6 +1,7 @@
 <template>
   <section class="container">
     <h2>{{ userName }}</h2>
+    <p>{{ user }}</p>
     <h3>{{ age }}</h3>
   </section>
 </template>
@@ -29,7 +30,8 @@ export default {
 
     return {
       userName: user.value.name,
-      age: user.value.age
+      age: user.value.age,
+      user: user
     };
   }
   // data() {
