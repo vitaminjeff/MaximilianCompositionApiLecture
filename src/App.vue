@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   setup() {
@@ -15,7 +15,9 @@ export default {
     // const uName = ref('Maximilian');
     // const uAge = ref(31);
 
-    const user = ref({
+    // reactive is like ref, but it's made for only for objects
+
+    const user = reactive({
       name: 'Maximilian',
       age: 31
     });
@@ -23,13 +25,11 @@ export default {
     console.log(user);
 
     setTimeout(function () {
-      user.value.name = 'Max';
-      user.value.age = 32;
+      user.name = 'Max';
+      user.age = 32;
     }, 2000);
 
     return {
-      userName: user.value.name,
-      age: user.value.age,
       user: user
     };
   }
