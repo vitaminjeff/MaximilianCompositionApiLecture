@@ -2,6 +2,7 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3>
+    <button @click="user.age = 32">Change Age</button>
   </section>
 </template>
 
@@ -33,10 +34,10 @@ export default {
     // console.log(isRef(uAge)); // check if ref
     // console.log(isReactive(user)); // check if reactive
 
-    setTimeout(function () {
-      user.name = 'Max';
-      user.age = 32;
-    }, 2000);
+    // setTimeout(function () {
+    //   user.name = 'Max';
+    //   user.age = 32;
+    // }, 2000);
 
     // const userRefs = toRefs(user); // get back an object whose properties are refs
 
