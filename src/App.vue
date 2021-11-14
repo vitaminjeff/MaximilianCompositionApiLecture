@@ -1,20 +1,20 @@
 <template>
   <section class="container">
-    <h2>{{ user.name }}</h2>
-    <h3>{{ user.age }}</h3>
+    <h2>{{ userName }}</h2>
+    <h3>{{ userAge }}</h3>
     <button @click="setAge">Change Age</button>
   </section>
 </template>
 
 <script>
-import { /*ref, */ reactive, /* isRef, isReactive, toRefs */ } from 'vue';
+import { ref,  reactive, /* isRef, isReactive, toRefs */ } from 'vue';
 
 export default {
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
-    // const uName = ref('Maximilian');
-    // const uAge = ref(31);
+    const uName = ref('Maximilian');
+    const uAge = ref(31);
 
     // reactive is like ref, but it's made for only for objects
 
@@ -24,7 +24,8 @@ export default {
     });
 
     function setNewAge() {
-      user.age = 32
+      // user.age = 32
+      uAge.value = 33;
     }
 
     // console.log(uAge, user);
@@ -49,6 +50,8 @@ export default {
       user: user,
       // userName: userRefs.name,
       // age: userRefs.age
+      userName: uName,
+      userAge: uAge,
       setAge: setNewAge
     };
   },
