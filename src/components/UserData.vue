@@ -4,12 +4,16 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+
 export default {
    props: ['firstName', 'lastName', 'age'],
-   computed: {
-      userName() {
-         return this.firstName + ' ' + this.lastName;
-      }
+   setup() {
+      const uName = computed(function() {
+         return this.firstName + ' ' + this.lastName; // not the same access to `this`
+      });
+
+      return { userName: uName};
    }
 };
 </script>
