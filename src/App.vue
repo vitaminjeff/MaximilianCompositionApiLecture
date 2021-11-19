@@ -5,7 +5,8 @@
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
-      <input type="text" placeholder="Last Name" v-model="lastName" />
+      <input type="text" placeholder="Last Name" ref="lastNameInput" />
+      <button @click="setLastName">Set Name</button>
     </div>
   </section>
 </template>
@@ -20,6 +21,7 @@ export default {
     // const uName = ref('Maximilian');
     const firstName = ref('');
     const lastName = ref('');
+    const lastNameInput = ref(null); // no differentiation between your own refs and refs you want to bind to a DOM element
     const uAge = ref(31);
       
     // uName.value is a readonly ref
@@ -51,6 +53,11 @@ export default {
       uAge.value = 33;
     }
 
+    function setLastName() {
+      // lastName.value = this.$refs.lastNameInput.value; // no access to this
+      lastName.value = lastNameInput.value.value; // access .value property of ref which is a pointer to <input /> element w/ a .value property
+    }
+
     // console.log(uAge, user);
 
     // console.log(uAge.value); // just a snapshot, no value watcher
@@ -77,7 +84,9 @@ export default {
       userAge: uAge,
       setAge: setNewAge,
       firstName,
-      lastName
+      // lastName,
+      lastNameInput,
+      setLastName
     };
   },
   // data() {
