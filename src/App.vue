@@ -3,18 +3,31 @@
     <h2>{{ userName }}</h2>
     <h3>{{ userAge }}</h3>
     <button @click="setAge">Change Age</button>
+    <div>
+      <input type="text" placeholder="First Name" @input="setFirstName" />
+      <input type="text" placeholder="Last Name" @input="setLastName" />
+    </div>
   </section>
 </template>
 
 <script>
-import { ref,  reactive, /* isRef, isReactive, toRefs */ } from 'vue';
+import { ref,  reactive, /* isRef, isReactive, toRefs */ computed } from 'vue';
 
 export default {
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
-    const uName = ref('Maximilian');
+    // const uName = ref('Maximilian');
+    const firstName = ref('');
+    const lastName = ref('');
     const uAge = ref(31);
+
+    const uName = computed(function() {
+      return firstName.value + ' ' + lastName.value;
+    });
+
+    // uName.value is a readonly ref
+    // uName.Value = 'NOPE!'; // can't do this
 
     // reactive is like ref, but it's made for only for objects
 
@@ -26,6 +39,14 @@ export default {
     function setNewAge() {
       // user.age = 32
       uAge.value = 33;
+    }
+
+    function setFirstName(event) {
+      firstName.value = event.target.value;
+    }
+    
+    function setLastName(event) {
+      lastName.value = event.target.value;
     }
 
     // console.log(uAge, user);
@@ -52,7 +73,9 @@ export default {
       // age: userRefs.age
       userName: uName,
       userAge: uAge,
-      setAge: setNewAge
+      setAge: setNewAge,
+      setFirstName,
+      setLastName
     };
   },
   // data() {
