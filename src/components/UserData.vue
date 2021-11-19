@@ -18,6 +18,9 @@ export default {
 
       console.log(context); // attrs, emit, slots
 
+      // this.$emit(); // can't do this outside of options api
+      // context.emit('save-data', 1);
+
       return { userName: uName };
    }
 };
