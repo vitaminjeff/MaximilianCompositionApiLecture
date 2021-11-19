@@ -1,7 +1,6 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ userAge }}</h3>
+    <user-data :first-name="firstName" :last-name="lastName" :age="userAge"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -13,8 +12,12 @@
 
 <script>
 import { ref,  reactive, /* isRef, isReactive, toRefs */ computed, watch } from 'vue';
+import UserData from './components/UserData.vue';
 
 export default {
+  components: {
+    UserData
+  },
   setup() {
     // this - does not refer to the Vue config object inside here like it does in methods
     // ref(); // returns reference to a reactive value, not to a DOM thing
@@ -84,7 +87,7 @@ export default {
       userAge: uAge,
       setAge: setNewAge,
       firstName,
-      // lastName,
+      lastName,
       lastNameInput,
       setLastName
     };
