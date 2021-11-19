@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref,  reactive, /* isRef, isReactive, toRefs */ computed } from 'vue';
+import { ref,  reactive, /* isRef, isReactive, toRefs */ computed, watch } from 'vue';
 
 export default {
   setup() {
@@ -21,16 +21,26 @@ export default {
     const firstName = ref('');
     const lastName = ref('');
     const uAge = ref(31);
-
+      
+    // uName.value is a readonly ref
+    // uName.Value = 'NOPE!'; // can't do this
     const uName = computed(function() {
       return firstName.value + ' ' + lastName.value;
     });
 
-    // uName.value is a readonly ref
-    // uName.Value = 'NOPE!'; // can't do this
+    // single dependency
+    // watch(uAge, function(newValue, oldValue) {
+    //   console.log('Old age: ' + oldValue)
+    //   console.log('New age: ' + newValue)
+    // });
+    watch([uAge, uName], function(newValues, oldValues) { // arguments are now arays
+      console.log('Old age: ' + oldValues[0])
+      console.log('New age: ' + newValues[0])
+      console.log('Old name: ' + oldValues[1])
+      console.log('New name: ' + newValues[1])
+    });
 
     // reactive is like ref, but it's made for only for objects
-
     const user = reactive({
       name: 'Maximilian',
       age: 31
