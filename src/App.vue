@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    <user-data :first-name="firstName" :last-name="lastName" :age="userAge" class="test"></user-data>
+    <user-data :first-name="firstName" :last-name="lastName" class="test"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { ref,  reactive, /* isRef, isReactive, toRefs */ computed, watch } from 'vue';
+import { ref,  reactive, /* isRef, isReactive, toRefs */ computed, watch, provide } from 'vue';
 import UserData from './components/UserData.vue';
 
 export default {
@@ -27,6 +27,8 @@ export default {
     const lastNameInput = ref(null); // no differentiation between your own refs and refs you want to bind to a DOM element
     const uAge = ref(31);
       
+    provide('userAge', uAge); // places where you inject the uAge ref will automatically be updated
+
     // uName.value is a readonly ref
     // uName.Value = 'NOPE!'; // can't do this
     const uName = computed(function() {
@@ -97,6 +99,10 @@ export default {
   //     userName: 'Maximilian',
   //   };
   // },
+  // the options api way of doing provide/inject
+  // provide() {
+  //    return { age: this.age };
+  // }
 };
 </script>
 
