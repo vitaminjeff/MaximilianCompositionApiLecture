@@ -8,9 +8,10 @@ import { computed } from 'vue';
 
 export default {
    props: ['firstName', 'lastName', 'age'],
-   setup() {
+   setup(props) {
       const uName = computed(function() {
-         return this.firstName + ' ' + this.lastName; // not the same access to `this`
+         // return this.firstName + ' ' + this.lastName; // not the same access to `this`
+         return props.firstName + ' ' + props.lastName; // not the same access to `this`
       });
 
       return { userName: uName};
