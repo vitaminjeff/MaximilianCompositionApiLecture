@@ -1,11 +1,12 @@
 <template>
   <section class="container">
-    <user-data :first-name="firstName" :last-name="lastName" class="test"></user-data>
+    <user-data v-if="shouldUnmount" :first-name="firstName" :last-name="lastName" class="test"></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
       <input type="text" placeholder="Last Name" ref="lastNameInput" />
       <button @click="setLastName">Set Name</button>
+      <button @click="toggleShouldUnmount">Toggle Should Unmount</button>
     </div>
   </section>
 </template>
@@ -26,6 +27,7 @@ export default {
     const lastName = ref('');
     const lastNameInput = ref(null); // no differentiation between your own refs and refs you want to bind to a DOM element
     const uAge = ref(31);
+    const shouldUnmount = ref(false);
       
     provide('userAge', uAge); // places where you inject the uAge ref will automatically be updated
 
@@ -63,6 +65,11 @@ export default {
       lastName.value = lastNameInput.value.value; // access .value property of ref which is a pointer to <input /> element w/ a .value property
     }
 
+    function toggleShouldUnmount() {
+      // lastName.value = this.$refs.lastNameInput.value; // no access to this
+      shouldUnmount.value = !shouldUnmount.value; // access .value property of ref which is a pointer to <input /> element w/ a .value property
+    }
+
     // console.log(uAge, user);
 
     // console.log(uAge.value); // just a snapshot, no value watcher
@@ -91,7 +98,9 @@ export default {
       firstName,
       lastName,
       lastNameInput,
-      setLastName
+      setLastName,
+      shouldUnmount,
+      toggleShouldUnmount
     };
   },
   // data() {
